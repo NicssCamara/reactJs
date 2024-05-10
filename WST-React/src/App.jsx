@@ -1,25 +1,37 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Message from './components/Message'
+import MessageClass from './components/MessageClass'
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Content from './components/Content'
+import Sidebar from './components/Sidebar'
+import Dashboard from './components/Dashboard'
+import Students from './components/Student'
+import Admin from './components/Admin'
+import TestComponents from './components/TestComponents';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className="text-lg font-sans font-bold">Vite + React</h1>
-      <h1>Henlo Werld</h1>
-      <h4>React Tailwind CSS</h4>
-    </>
+       
+      <Router>
+        <div className="flex flex-col h-screen w-screen">
+              <Header />
+                <div className="flex flex-1">
+                  <Sidebar />
+                    <Routes>
+                      <Route exact path="/dashboard" element={<Dashboard />} />
+                      <Route exact path="/admin" element={<Admin />} />
+                      <Route exact path="/students" element={<Students/>} />
+                    </Routes>
+                </div>
+              <Footer />
+          </div>
+       </Router>
   )
 }
 
